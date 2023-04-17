@@ -37,9 +37,9 @@ async def get_score_count(platform: str, scored: float, year: int) -> dict:
         & (df["release_year"] == year)
     ]
 
-    # Count movies with score higher than "scored" param
+    # Count movies with score higher or equal to "scored" param
     movie_count = filtered_df.loc[
-        filtered_df["score_avg"] > scored
+        filtered_df["score_avg"] >= scored
     ].groupby("platform")["id"].count()[platform.lower()].item()
 
     return {
