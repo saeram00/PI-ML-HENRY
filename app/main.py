@@ -11,7 +11,7 @@ app = FastAPI(title="Pelis y Series")
 async def read_root():
      return "Base de datos de películas dispobibles en distintas plataformas"
 
-@app.get("/get_max_duration/")
+@app.get("/get_max_duration/{year}/{platform}/{duration_type}")
 async def get_max_duration(year: int, platform: str, duration_type: str) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
 
@@ -27,7 +27,7 @@ async def get_max_duration(year: int, platform: str, duration_type: str) -> dict
     return {"pelicula": max_duration_movie}
 
 
-@app.get("/get_score_count/")
+@app.get("/get_score_count/{platform}/{scored}/{year}")
 async def get_score_count(platform: str, scored: float, year: int) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
     
@@ -50,7 +50,7 @@ async def get_score_count(platform: str, scored: float, year: int) -> dict:
     }
 
 
-@app.get("/get_count_platform/")
+@app.get("/get_count_platform/{platform}")
 async def get_count_platform(platform: str) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
     
@@ -66,7 +66,7 @@ async def get_count_platform(platform: str) -> dict:
     }
 
 
-@app.get("/get_actor/")
+@app.get("/get_actor/{platform}/{year}")
 async def get_actor(platform: str, year: int) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
 
@@ -92,7 +92,7 @@ async def get_actor(platform: str, year: int) -> dict:
     }
 
 
-@app.get("/prod_per_country/")
+@app.get("/prod_per_country/{prod_type}/{country}/{year}")
 async def prod_per_country(prod_type: str, country: str, year: int) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
 
@@ -112,7 +112,7 @@ async def prod_per_country(prod_type: str, country: str, year: int) -> dict:
     }
 
 
-@app.get("/get_contents/")
+@app.get("/get_contents/{rating}")
 async def get_contents(rating: str) -> dict:
     df = pd.read_csv(MOVIE_CSV_PATH)
     
