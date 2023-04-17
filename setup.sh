@@ -56,7 +56,7 @@ raw* | pre*)
             if [ -r "${project_root_dir}/requirements.txt" ] ; then
                 pip3 install -U -r "${project_root_dir}/requirements.txt"
             else
-                pip3 install -U pandas fastapi uvicorn
+                pip3 install -U pandas==1.5.3 fastapi==0.95.0 uvicorn==0.21.1
             fi
         else
             echo "Required Python libraries already installed. Continuing..."
